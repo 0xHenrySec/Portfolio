@@ -1,0 +1,44 @@
+---
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<article class="group flex h-full flex-col justify-between border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition duration-200 hover:-translate-y-1 hover:border-[color:var(--border-strong)]">
+  <div class="space-y-5">
+    <div class="flex items-center justify-between gap-4">
+      <span class="terminal-chip">{project.category}</span>
+      <span class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent-warm)]">
+        Case
+      </span>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-2xl font-semibold text-white">{project.title}</h3>
+      <p class="text-sm leading-6 text-[color:var(--text-soft)]">{project.tagline}</p>
+      <p class="text-sm leading-6 text-[color:var(--text-soft)]">{project.summary}</p>
+    </div>
+  </div>
+
+  <div class="mt-8 flex items-center justify-between gap-4">
+    <ul class="flex flex-wrap gap-2">
+      {project.technologies.slice(0, 3).map((item) => (
+        <li class="border border-[color:var(--border)] px-2.5 py-1 text-xs text-[color:var(--text-soft)]">
+          {item}
+        </li>
+      ))}
+    </ul>
+
+    <a
+      class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)] transition group-hover:text-white"
+      href={`${baseUrl}projetos/${project.slug}/`}
+    >
+      Abrir
+    </a>
+  </div>
+</article>

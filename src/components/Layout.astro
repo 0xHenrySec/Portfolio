@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+import { profile, siteMeta } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = siteMeta.title,
+  description = siteMeta.description
+} = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#071014" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="sticky top-0 z-40 border-b border-[color:var(--border)] bg-[rgba(3,8,11,0.72)] backdrop-blur-xl">
+      <div class="container-shell flex items-center justify-between gap-6 py-4">
+        <a href={baseUrl} class="font-mono text-sm uppercase tracking-[0.28em] text-white">
+          {profile.name}
+        </a>
+
+        <nav aria-label="principal" class="hidden md:block">
+          <ul class="flex items-center gap-6 font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--text-soft)]">
+            <li><a href={baseUrl}>Home</a></li>
+            <li><a href={`${baseUrl}#projetos`}>Projetos</a></li>
+            <li><a href={`${baseUrl}#medium`}>Medium</a></li>
+            <li><a href={`${baseUrl}#contato`}>Contato</a></li>
+          </ul>
+        </nav>
+
+        <a class="button-secondary text-sm" href={`${baseUrl}#projetos`}>Explorar Cases</a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
