@@ -1,233 +1,161 @@
-export type ProjectCategory = "Destaque" | "Intermediario" | "Ferramenta";
+export type ProjectCategory = "Principal" | "Intermediário" | "Ferramenta";
 
-export type ProjectLink = {
-  label: string;
-  href: string;
+export type ProjectLinks = {
+  demo?: string;
+  repo?: string;
+  writeup?: string;
 };
 
 export type Project = {
   slug: string;
   title: string;
   category: ProjectCategory;
-  tagline: string;
   summary: string;
-  objective: string;
+  description: string;
   technologies: string[];
-  architecture: string[];
-  implementation: string[];
-  results: string[];
-  learnings: string[];
-  links: ProjectLink[];
+  highlights: string[];
+  result: string;
+  links: ProjectLinks;
 };
 
 export const projects: Project[] = [
   {
     slug: "cryptoshield",
     title: "CryptoShield",
-    category: "Destaque",
-    tagline: "Laboratorio de deteccao para ransomware e abuso de criptografia em endpoints Linux.",
-    summary:
-      "Projeto voltado para visibilidade de processos suspeitos, alteracoes em massa e padroes de uso anormal de CPU, disco e I/O relacionados a ransomware.",
-    objective:
-      "Construir um fluxo de deteccao defensiva capaz de identificar comportamento compativel com criptografia maliciosa antes da indisponibilidade total do host.",
-    technologies: ["Linux", "auditd", "Sysmon for Linux", "Sigma", "Python", "Wazuh"],
-    architecture: [
-      "Coleta de eventos via auditd e Sysmon for Linux.",
-      "Normalizacao no Wazuh para correlacionar execucao de binarios, alteracoes de arquivos e escalada de privilegios.",
-      "Regras Sigma adaptadas para comportamento de ransomware em laboratorio controlado."
+    category: "Principal",
+    summary: "Detecção de fraudes em transações blockchain em tempo real.",
+    description:
+      "Projeto desenvolvido no Challenge FIAP x TecBan 2025, focado na análise e correlação de transações em blockchain para identificação de atividades suspeitas.",
+    technologies: ["Python", "Alchemy API", "Ethereum Sepolia", "Splunk", "Telegram"],
+    highlights: [
+      "Análise em tempo real",
+      "Detecção heurística",
+      "Integração com SIEM (Splunk)",
+      "Alertas automatizados",
+      "Correlação por comportamento"
     ],
-    implementation: [
-      "Mapeamento de TTPs relacionadas a encryptors e scripts de impacto.",
-      "Criacao de playbooks para triagem de picos de escrita, rename e exclusao em massa.",
-      "Automacao em Python para gerar evidencias e validar o pipeline de deteccao."
-    ],
-    results: [
-      "Reducao do tempo de identificacao de atividades suspeitas em laboratorio.",
-      "Conjunto inicial de alertas acionaveis para processos anormais e persistencia.",
-      "Base reutilizavel para cenarios de resposta e tuning de SIEM."
-    ],
-    learnings: [
-      "Correlacao por contexto de processo gera menos ruido do que alertas isolados por arquivo.",
-      "Ambientes Linux exigem observabilidade detalhada para diferenciar manutencao legitima de impacto malicioso."
-    ],
-    links: [{ label: "Repositorio em preparacao", href: "#" }]
+    result: "Top 10 no Challenge FIAP x TecBan 2025.",
+    links: {
+      repo: "https://github.com/Crypto-Shield256/Projeto"
+    }
   },
   {
     slug: "hardening-linux",
     title: "Hardening Linux",
-    category: "Destaque",
-    tagline: "Baseline de seguranca para hosts Linux com foco em exposicao reduzida e auditabilidade.",
-    summary:
-      "Colecao de controles para reforco de autenticacao, servicos, firewall, logging e configuracao segura em ambientes de laboratorio.",
-    objective:
-      "Criar um baseline reproduzivel para endurecimento de sistemas Linux em cenarios de servidor e estacao administrativa.",
-    technologies: ["Linux", "SSH", "UFW", "Fail2ban", "Auditd", "Bash"],
-    architecture: [
-      "Camada de autenticacao endurecida com politicas de senha e SSH restritivo.",
-      "Camada de superficie reduzida com desativacao de servicos e controle de portas.",
-      "Camada de visibilidade com logs locais e trilhas de auditoria."
+    category: "Principal",
+    summary: "Hardening completo de Ubuntu Server com foco em defesa em profundidade.",
+    description:
+      "Implementação de controles preventivos e detectivos para redução de superfície de ataque e aumento de auditabilidade.",
+    technologies: ["Linux", "AppArmor", "auditd", "nftables"],
+    highlights: [
+      "MAC com AppArmor",
+      "Auditoria com auditd",
+      "Least privilege com sudo",
+      "Firewall deny by default"
     ],
-    implementation: [
-      "Aplicacao de checklists tecnicos para SSH, sudo, PAM e permissao de arquivos.",
-      "Automacao de configuracoes de firewall e rotinas basicas de auditoria.",
-      "Validacao em VMs com comparativo antes e depois do baseline."
-    ],
-    results: [
-      "Menor superficie de ataque e configuracao mais previsivel.",
-      "Documentacao clara para repeticao do hardening em novos laboratorios.",
-      "Melhora da capacidade de auditoria em eventos administrativos."
-    ],
-    learnings: [
-      "Hardening efetivo depende de padrao consistente e revisao continua, nao de medidas isoladas.",
-      "Mudancas pequenas em autenticacao e servicos ja elevam bastante a maturidade operacional."
-    ],
-    links: [{ label: "Checklist tecnico", href: "#" }]
+    result: "Ambiente validado com controles ativos e testados.",
+    links: {
+      demo: "https://my-projects-257891346.github.io/Portfolio/hardening-ubuntu.html"
+    }
   },
   {
-    slug: "infraestrutura-linux-corporativa-em-laboratorio",
-    title: "Infraestrutura Linux Corporativa em Laboratorio",
-    category: "Destaque",
-    tagline: "Ambiente corporativo simulado com servicos centrais, segmentacao e monitoramento.",
-    summary:
-      "Laboratorio desenhado para reproduzir rotinas de administracao, autenticacao, observabilidade e testes de seguranca em uma topologia interna controlada.",
-    objective:
-      "Concentrar em um unico ambiente os componentes necessarios para praticar defesa, hardening e troubleshooting com foco operacional.",
-    technologies: ["Linux", "Docker", "Nginx", "SSH", "Wazuh", "Virtualizacao"],
-    architecture: [
-      "Topologia segmentada por servicos administrativos, aplicacao e observabilidade.",
-      "Hosts Linux com papeis distintos para simular operacao corporativa.",
-      "Monitoramento centralizado para eventos, disponibilidade e configuracao."
+    slug: "infraestrutura-linux-corporativa",
+    title: "Infraestrutura Linux Corporativa",
+    category: "Principal",
+    summary: "Simulação de ambiente corporativo com serviços e segurança aplicada.",
+    description:
+      "Infraestrutura Linux com serviços reais (web, DNS, email, arquivos) e controles de segurança e backup.",
+    technologies: ["Linux", "Apache", "Samba", "BIND9", "Postfix"],
+    highlights: [
+      "Ambiente corporativo simulado",
+      "Hardening SSH",
+      "Fail2Ban",
+      "Backup automatizado"
     ],
-    implementation: [
-      "Provisionamento de VMs e containers para representar camadas de uma rede interna.",
-      "Definicao de politicas de acesso, contas administrativas e rotinas de manutencao.",
-      "Teste de falhas e cenarios de incidente para medir recuperacao e visibilidade."
-    ],
-    results: [
-      "Ambiente reutilizavel para estudos de Blue Team e administracao segura.",
-      "Melhor entendimento de dependencias entre servicos e telemetria.",
-      "Base concreta para demonstrar capacidade hands-on a recrutadores."
-    ],
-    learnings: [
-      "Laboratorios mais uteis sao os que replicam operacao real, nao apenas instalacao de ferramentas.",
-      "Documentar topologia e fluxo de logs acelera tanto investigacao quanto expansao do ambiente."
-    ],
-    links: [{ label: "Resumo do laboratorio", href: "#" }]
+    result: "Ambiente funcional, seguro e documentado.",
+    links: {
+      demo: "https://my-projects-257891346.github.io/Portfolio/linux-lab.html"
+    }
   },
   {
     slug: "uz-trampa",
-    title: "Uz Trampa",
-    category: "Intermediario",
-    tagline: "Ambiente ofensivo-controlado para estudar deteccao, iscas e comportamento de invasores.",
-    summary:
-      "Projeto intermediario que combina telemetria e provocacao controlada para observar interacoes suspeitas em um cenario de laboratorio.",
-    objective:
-      "Gerar sinais uteis para analise defensiva ao expor servicos e artefatos monitorados em um ambiente isolado.",
-    technologies: ["Linux", "Cowrie", "Python", "Syslog", "Docker"],
-    architecture: [
-      "Servicos isca expostos em ambiente segregado.",
-      "Coleta de eventos em tempo real para posterior analise de padroes.",
-      "Camada de scripts para consolidar evidencias."
+    title: "Uz Trampa (La Creatura)",
+    category: "Intermediário",
+    summary: "Simulação controlada de ataques DDoS para análise de resiliência.",
+    description:
+      "Projeto desenvolvido no Challenge FIAP 2024 em parceria com a PRIDE Security para testar comportamento de aplicações sob ataque.",
+    technologies: ["Python", "C#"],
+    highlights: [
+      "Simulação DDoS layer 7",
+      "Geração de relatórios",
+      "Testes controlados",
+      "Avaliação de disponibilidade"
     ],
-    implementation: [
-      "Configuracao de honeypots e rotas de log dedicadas.",
-      "Organizacao de indicadores relevantes para sessao, comando e origem.",
-      "Ajustes de ruido para manter o laboratorio legivel."
-    ],
-    results: [
-      "Base de eventos para praticar triagem e correlacao.",
-      "Visibilidade sobre tecnicas simples de reconhecimento e tentativa de acesso."
-    ],
-    learnings: [
-      "Sinais de baixa complexidade ainda ajudam muito em deteccao inicial.",
-      "Honeypots exigem contexto para nao inflar metricas sem valor analitico."
-    ],
-    links: [{ label: "Notas do projeto", href: "#" }]
+    result: "Top 10 entre 68 equipes no Challenge FIAP x PRIDE Security 2024",
+    links: {}
   },
   {
     slug: "hackermindset",
     title: "Hackermindset",
-    category: "Intermediario",
-    tagline: "Colecao de exercicios para pensar em superficie de ataque, abuso de confianca e deteccao.",
-    summary:
-      "Projeto de estudo estruturado para praticar raciocinio tecnico orientado a ataque e traducao desse raciocinio em controles defensivos.",
-    objective:
-      "Treinar observacao, hipotese e resposta defensiva a partir da perspectiva de como um invasor explora configuracoes fracas.",
-    technologies: ["Linux", "Python", "Bash", "Networking", "Logs"],
-    architecture: [
-      "Exercicios separados por etapa de reconhecimento, exploracao e deteccao.",
-      "Registro de hipoteses defensivas geradas a partir de cada experimento."
+    category: "Intermediário",
+    summary: "Exercícios práticos para evolução de mentalidade ofensiva aplicada à defesa.",
+    description:
+      "Coleção de exercícios e estudos técnicos voltados para entender como pensamento ofensivo, enumeração e exploração controlada podem fortalecer análise defensiva, hardening e observabilidade.",
+    technologies: ["Linux", "Python", "Bash"],
+    highlights: [
+      "Estudo de mentalidade ofensiva com foco defensivo",
+      "Exercícios práticos em Linux",
+      "Automação com Python e Bash",
+      "Aprendizado aplicável a detecção e hardening"
     ],
-    implementation: [
-      "Montagem de cenarios controlados com configuracoes intencionalmente fracas.",
-      "Analise de como cada fragilidade pode ser percebida via logs e monitoramento."
-    ],
-    results: [
-      "Melhoria no raciocinio sobre cadeia de ataque e pontos de visibilidade.",
-      "Maior capacidade de transformar estudo ofensivo em backlog defensivo."
-    ],
-    learnings: [
-      "Pensar como atacante melhora priorizacao de controles.",
-      "A melhor pergunta depois de cada teste e como isso apareceria no ambiente real."
-    ],
-    links: [{ label: "Caderno tecnico", href: "#" }]
+    result: "Base contínua de estudo para ampliar repertório técnico e visão de ataque aplicada à defesa.",
+    links: {
+      repo: "https://github.com/0xHenrySec/Hackermindset"
+    }
   },
   {
     slug: "password-generator",
     title: "Password Generator",
     category: "Ferramenta",
-    tagline: "Ferramenta utilitaria para geracao de senhas fortes com configuracao simples.",
-    summary:
-      "Aplicacao de apoio para criar senhas robustas com variacoes de comprimento, conjuntos de caracteres e politicas minimas.",
-    objective:
-      "Disponibilizar uma ferramenta pratica e direta para reforcar boas praticas de autenticacao no dia a dia.",
-    technologies: ["Python", "CLI", "Seguranca de Senhas"],
-    architecture: [
-      "Entrada simples de parametros e geracao local da senha.",
-      "Regras para evitar combinacoes fracas e baixa entropia."
+    summary: "Gerador de senhas seguras com múltiplas versões e personalização.",
+    description:
+      "Ferramenta para geração de senhas seguras baseada em padrões definidos pelo usuário, permitindo controle sobre tamanho, tipos de caracteres e complexidade. O projeto possui duas versões: uma aplicação desktop e uma versão web.",
+    technologies: ["Python", "Tkinter", "ttkbootstrap", "HTML", "CSS", "JavaScript"],
+    highlights: [
+      "Geração de senhas personalizadas",
+      "Controle de complexidade e padrões",
+      "Versão desktop (Python + Tkinter + ttkbootstrap)",
+      "Versão web (HTML + CSS + JavaScript)",
+      "Foco em boas práticas de segurança"
     ],
-    implementation: [
-      "Definicao de conjuntos de caracteres e validacoes minimas.",
-      "Saida orientada a uso rapido em ambiente CLI."
-    ],
-    results: [
-      "Ferramenta leve para demonstrar fundamentos de autenticacao segura.",
-      "Exemplo pratico de utilitario com foco em seguranca."
-    ],
-    learnings: [
-      "Utilitarios pequenos tambem comunicam maturidade tecnica quando resolvem um problema real."
-    ],
-    links: [{ label: "Repositorio em preparacao", href: "#" }]
+    result: "Ferramenta funcional para geração de senhas seguras com foco em flexibilidade e usabilidade.",
+    links: {
+      demo: "https://0xhenrysec.github.io/Password-Gen/",
+      repo: "https://github.com/0xHenrySec/Password-Gen"
+    }
   },
   {
     slug: "system-check-tool",
     title: "system-check-tool",
     category: "Ferramenta",
-    tagline: "Script de verificacao rapida para posture de seguranca e estado basico do host.",
-    summary:
-      "Ferramenta de apoio para coletar informacoes de configuracao, servicos, versoes e sinais operacionais relevantes durante auditoria inicial.",
-    objective:
-      "Agilizar uma checagem tecnica inicial de hosts Linux sem depender de analise manual repetitiva.",
-    technologies: ["Bash", "Linux", "Auditoria Basica"],
-    architecture: [
-      "Coleta modular de informacoes sobre servicos, portas, usuarios e atualizacoes.",
-      "Saida padronizada para uso em triagem e hardening."
+    summary: "Script multiplataforma para coleta de informações do sistema.",
+    description:
+      "Ferramenta leve e multiplataforma desenvolvida em Python para coletar informações essenciais do sistema e do hardware em ambientes Windows e Linux. O script detecta automaticamente o sistema operacional e executa os comandos apropriados para cada ambiente, entregando uma saída estruturada, organizada e codificada em UTF-8.",
+    technologies: ["Python", "Windows", "Linux"],
+    highlights: [
+      "Execução multiplataforma (Windows e Linux)",
+      "Detecção automática do sistema operacional",
+      "Coleta de informações de hardware e sistema",
+      "Saída estruturada e legível",
+      "Codificação UTF-8"
     ],
-    implementation: [
-      "Organizacao do script por grupos de checagem.",
-      "Padronizacao da saida para leitura rapida e comparacao."
-    ],
-    results: [
-      "Ganho de tempo em avaliacoes tecnicas iniciais.",
-      "Checklist automatizado para tarefas recorrentes de revisao."
-    ],
-    learnings: [
-      "Padronizar observacoes reduz falhas humanas e facilita comunicacao tecnica."
-    ],
-    links: [{ label: "Repositorio em preparacao", href: "#" }]
+    result: "Script útil para auditoria inicial, inventário rápido e coleta padronizada de informações do sistema.",
+    links: {
+      repo: "https://github.com/0xHenrySec/system-check-tool"
+    }
   }
 ];
 
-export const featuredProjects = projects.filter((project) => project.category === "Destaque");
-export const intermediateProjects = projects.filter((project) => project.category === "Intermediario");
+export const featuredProjects = projects.filter((project) => project.category === "Principal");
+export const intermediateProjects = projects.filter((project) => project.category === "Intermediário");
 export const toolProjects = projects.filter((project) => project.category === "Ferramenta");
