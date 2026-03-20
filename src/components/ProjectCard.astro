@@ -9,36 +9,35 @@ const { project } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<article class="group flex h-full flex-col justify-between border border-[color:var(--border)] bg-[color:var(--surface)] p-6 transition duration-200 hover:-translate-y-1 hover:border-[color:var(--border-strong)]">
+<article class="card-panel group flex h-full flex-col justify-between gap-8 p-6 transition duration-200 hover:-translate-y-1 hover:border-[color:var(--border-strong)]">
   <div class="space-y-5">
     <div class="flex items-center justify-between gap-4">
       <span class="terminal-chip">{project.category}</span>
-      <span class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent-warm)]">
-        Case
-      </span>
+      <span class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent-warm)]">Projeto</span>
     </div>
 
     <div class="space-y-3">
       <h3 class="text-2xl font-semibold text-white">{project.title}</h3>
       <p class="text-sm leading-6 text-[color:var(--text-soft)]">{project.tagline}</p>
-      <p class="text-sm leading-6 text-[color:var(--text-soft)]">{project.summary}</p>
+      <p class="text-sm leading-6 text-[color:var(--text-muted)]">{project.summary}</p>
     </div>
   </div>
 
-  <div class="mt-8 flex items-center justify-between gap-4">
+  <div class="space-y-5">
     <ul class="flex flex-wrap gap-2">
       {project.technologies.slice(0, 3).map((item) => (
-        <li class="border border-[color:var(--border)] px-2.5 py-1 text-xs text-[color:var(--text-soft)]">
-          {item}
-        </li>
+        <li class="tag-chip">{item}</li>
       ))}
     </ul>
 
-    <a
-      class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)] transition group-hover:text-white"
-      href={`${baseUrl}projetos/${project.slug}/`}
-    >
-      Abrir
-    </a>
+    <div class="flex items-center justify-between gap-4 border-t border-[color:var(--border)] pt-4">
+      <span class="text-sm text-[color:var(--text-soft)]">Ver detalhes técnicos</span>
+      <a
+        class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)] transition group-hover:text-white"
+        href={`${baseUrl}projetos/${project.slug}/`}
+      >
+        Abrir →
+      </a>
+    </div>
   </div>
 </article>
