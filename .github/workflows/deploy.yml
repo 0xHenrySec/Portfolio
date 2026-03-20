@@ -44,6 +44,9 @@ jobs:
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
 
+      - name: Create .nojekyll marker
+        run: touch dist/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

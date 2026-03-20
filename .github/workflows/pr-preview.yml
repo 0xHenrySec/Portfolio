@@ -36,6 +36,9 @@ jobs:
         env:
           SITE_URL: https://preview.local
 
+      - name: Create .nojekyll marker
+        run: touch dist/.nojekyll
+
       - name: Upload preview artifact
         uses: actions/upload-artifact@v4
         with:
