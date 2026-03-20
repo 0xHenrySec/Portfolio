@@ -1,4 +1,4 @@
-export type ProjectCategory = "Destaque" | "Intermediario" | "Ferramenta";
+export type ProjectCategory = "Destaque" | "Intermediário" | "Ferramenta";
 
 export type ProjectLink = {
   label: string;
@@ -20,214 +20,239 @@ export type Project = {
   links: ProjectLink[];
 };
 
+const githubProfile = "https://github.com/0xHenrySec";
+const mediumProfile = "https://medium.com/@0xHenry";
+
 export const projects: Project[] = [
   {
     slug: "cryptoshield",
     title: "CryptoShield",
     category: "Destaque",
-    tagline: "Laboratorio de deteccao para ransomware e abuso de criptografia em endpoints Linux.",
+    tagline: "Laboratório defensivo para identificar sinais de ransomware e abuso de criptografia em Linux.",
     summary:
-      "Projeto voltado para visibilidade de processos suspeitos, alteracoes em massa e padroes de uso anormal de CPU, disco e I/O relacionados a ransomware.",
+      "O CryptoShield foi pensado para estudar como um ambiente Linux reage a comportamentos típicos de ransomware, com foco em processos suspeitos, escrita em massa, alterações anômalas de arquivos e correlação de eventos em tempo quase real.",
     objective:
-      "Construir um fluxo de deteccao defensiva capaz de identificar comportamento compativel com criptografia maliciosa antes da indisponibilidade total do host.",
+      "Criar um fluxo de detecção capaz de antecipar indícios de criptografia maliciosa antes que o host perca disponibilidade, usando visibilidade de processo, filesystem e telemetria centralizada.",
     technologies: ["Linux", "auditd", "Sysmon for Linux", "Sigma", "Python", "Wazuh"],
     architecture: [
-      "Coleta de eventos via auditd e Sysmon for Linux.",
-      "Normalizacao no Wazuh para correlacionar execucao de binarios, alteracoes de arquivos e escalada de privilegios.",
-      "Regras Sigma adaptadas para comportamento de ransomware em laboratorio controlado."
+      "Coleta de eventos de processo, arquivo e privilégio com auditd e Sysmon for Linux.",
+      "Envio e normalização dos logs em uma camada de monitoramento central para correlacionar múltiplos sinais em contexto único.",
+      "Regras de detecção adaptadas para cenários de encryptors, exclusão em massa e persistência em laboratório controlado."
     ],
     implementation: [
-      "Mapeamento de TTPs relacionadas a encryptors e scripts de impacto.",
-      "Criacao de playbooks para triagem de picos de escrita, rename e exclusao em massa.",
-      "Automacao em Python para gerar evidencias e validar o pipeline de deteccao."
+      "Mapeamento de comportamentos associados a ransomware para orientar quais eventos deveriam ser coletados e priorizados.",
+      "Criação de scripts e rotinas em Python para gerar atividade simulada e testar a confiabilidade da telemetria.",
+      "Ajuste de alertas para reduzir ruído e destacar apenas o que realmente ajuda na triagem defensiva."
     ],
     results: [
-      "Reducao do tempo de identificacao de atividades suspeitas em laboratorio.",
-      "Conjunto inicial de alertas acionaveis para processos anormais e persistencia.",
-      "Base reutilizavel para cenarios de resposta e tuning de SIEM."
+      "Melhor visibilidade sobre padrões de escrita, rename e destruição de arquivos em ambiente Linux.",
+      "Base inicial de alertas reutilizáveis para cenários de resposta a incidente e tuning de SIEM.",
+      "Documentação prática de um pipeline focado em detecção e evidências, e não apenas em instalação de ferramentas."
     ],
     learnings: [
-      "Correlacao por contexto de processo gera menos ruido do que alertas isolados por arquivo.",
-      "Ambientes Linux exigem observabilidade detalhada para diferenciar manutencao legitima de impacto malicioso."
+      "Contexto de processo é decisivo para separar automação legítima de comportamento destrutivo.",
+      "Coletar mais logs não basta; o valor está na correlação certa e na capacidade de interpretar o evento."
     ],
-    links: [{ label: "Repositorio em preparacao", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   },
   {
     slug: "hardening-linux",
     title: "Hardening Linux",
     category: "Destaque",
-    tagline: "Baseline de seguranca para hosts Linux com foco em exposicao reduzida e auditabilidade.",
+    tagline: "Baseline prático para reduzir superfície de ataque e elevar a auditabilidade de hosts Linux.",
     summary:
-      "Colecao de controles para reforco de autenticacao, servicos, firewall, logging e configuracao segura em ambientes de laboratorio.",
+      "Este projeto reúne um conjunto de configurações e revisões voltadas para endurecimento de sistemas Linux, com atenção especial a autenticação, serviços expostos, firewall, trilhas de auditoria e padronização operacional.",
     objective:
-      "Criar um baseline reproduzivel para endurecimento de sistemas Linux em cenarios de servidor e estacao administrativa.",
+      "Consolidar um baseline de hardening repetível, útil tanto para laboratórios quanto para servidores administrativos, priorizando segurança prática e validação técnica.",
     technologies: ["Linux", "SSH", "UFW", "Fail2ban", "Auditd", "Bash"],
     architecture: [
-      "Camada de autenticacao endurecida com politicas de senha e SSH restritivo.",
-      "Camada de superficie reduzida com desativacao de servicos e controle de portas.",
-      "Camada de visibilidade com logs locais e trilhas de auditoria."
+      "Camada de autenticação reforçada com políticas de senha, acesso SSH restritivo e revisão de privilégios.",
+      "Camada de exposição reduzida com firewall, desativação de serviços desnecessários e revisão de portas abertas.",
+      "Camada de visibilidade com logs, auditoria e checklist de conformidade para comparar estado antes e depois do endurecimento."
     ],
     implementation: [
-      "Aplicacao de checklists tecnicos para SSH, sudo, PAM e permissao de arquivos.",
-      "Automacao de configuracoes de firewall e rotinas basicas de auditoria.",
-      "Validacao em VMs com comparativo antes e depois do baseline."
+      "Aplicação de checklist técnico para SSH, sudo, PAM, permissões sensíveis e serviços essenciais.",
+      "Automação em shell para acelerar configurações recorrentes e validar o estado final do host.",
+      "Testes em máquinas virtuais para medir impacto, consistência e pontos que ainda exigem ajuste manual."
     ],
     results: [
-      "Menor superficie de ataque e configuracao mais previsivel.",
-      "Documentacao clara para repeticao do hardening em novos laboratorios.",
-      "Melhora da capacidade de auditoria em eventos administrativos."
+      "Hosts com configuração mais previsível, menos exposição e melhor capacidade de auditoria.",
+      "Documentação reaproveitável para replicar o baseline em novos cenários de laboratório.",
+      "Maior clareza sobre o que realmente fortalece o sistema versus mudanças cosméticas."
     ],
     learnings: [
-      "Hardening efetivo depende de padrao consistente e revisao continua, nao de medidas isoladas.",
-      "Mudancas pequenas em autenticacao e servicos ja elevam bastante a maturidade operacional."
+      "Hardening eficiente depende de processo e revisão contínua, não de uma execução única.",
+      "Pequenos ajustes em autenticação, logging e serviços já entregam ganhos defensivos relevantes."
     ],
-    links: [{ label: "Checklist tecnico", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   },
   {
     slug: "infraestrutura-linux-corporativa-em-laboratorio",
-    title: "Infraestrutura Linux Corporativa em Laboratorio",
+    title: "Infraestrutura Linux Corporativa em Laboratório",
     category: "Destaque",
-    tagline: "Ambiente corporativo simulado com servicos centrais, segmentacao e monitoramento.",
+    tagline: "Ambiente corporativo simulado para estudar administração segura, segmentação e monitoramento.",
     summary:
-      "Laboratorio desenhado para reproduzir rotinas de administracao, autenticacao, observabilidade e testes de seguranca em uma topologia interna controlada.",
+      "Laboratório criado para reproduzir uma pequena infraestrutura Linux com serviços distintos, políticas de acesso, observabilidade e cenários de troubleshooting. O objetivo é aproximar a prática de um contexto corporativo realista.",
     objective:
-      "Concentrar em um unico ambiente os componentes necessarios para praticar defesa, hardening e troubleshooting com foco operacional.",
-    technologies: ["Linux", "Docker", "Nginx", "SSH", "Wazuh", "Virtualizacao"],
+      "Centralizar, em um mesmo ambiente, os elementos necessários para exercitar defesa, hardening, organização de serviços e investigação técnica com foco operacional.",
+    technologies: ["Linux", "Docker", "Nginx", "SSH", "Wazuh", "Virtualização"],
     architecture: [
-      "Topologia segmentada por servicos administrativos, aplicacao e observabilidade.",
-      "Hosts Linux com papeis distintos para simular operacao corporativa.",
-      "Monitoramento centralizado para eventos, disponibilidade e configuracao."
+      "Topologia com segmentação por função, separando serviços administrativos, aplicação e monitoramento.",
+      "Hosts Linux com papéis distintos para representar uma rotina de operação mais próxima do mundo real.",
+      "Camada de observabilidade para acompanhar eventos, disponibilidade e mudanças de configuração."
     ],
     implementation: [
-      "Provisionamento de VMs e containers para representar camadas de uma rede interna.",
-      "Definicao de politicas de acesso, contas administrativas e rotinas de manutencao.",
-      "Teste de falhas e cenarios de incidente para medir recuperacao e visibilidade."
+      "Provisionamento de VMs e containers para simular serviços internos e dependências entre componentes.",
+      "Definição de políticas de acesso, contas administrativas, rotinas de backup e manutenção.",
+      "Execução de testes de falha e incidentes simulados para medir recuperação, visibilidade e troubleshooting."
     ],
     results: [
-      "Ambiente reutilizavel para estudos de Blue Team e administracao segura.",
-      "Melhor entendimento de dependencias entre servicos e telemetria.",
-      "Base concreta para demonstrar capacidade hands-on a recrutadores."
+      "Ambiente reutilizável para estudos de Blue Team, administração Linux e exercícios de resposta.",
+      "Melhor entendimento das relações entre topologia, telemetria e segurança operacional.",
+      "Base consistente para demonstrar capacidade hands-on em cenários mais completos do que labs isolados."
     ],
     learnings: [
-      "Laboratorios mais uteis sao os que replicam operacao real, nao apenas instalacao de ferramentas.",
-      "Documentar topologia e fluxo de logs acelera tanto investigacao quanto expansao do ambiente."
+      "Laboratórios mais valiosos são os que simulam operação, dependências e manutenção, e não só instalação.",
+      "Documentação de topologia e fluxo de logs acelera muito a expansão e a investigação do ambiente."
     ],
-    links: [{ label: "Resumo do laboratorio", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   },
   {
     slug: "uz-trampa",
     title: "Uz Trampa",
-    category: "Intermediario",
-    tagline: "Ambiente ofensivo-controlado para estudar deteccao, iscas e comportamento de invasores.",
+    category: "Intermediário",
+    tagline: "Ambiente controlado com iscas e observabilidade para estudar comportamento de invasores.",
     summary:
-      "Projeto intermediario que combina telemetria e provocacao controlada para observar interacoes suspeitas em um cenario de laboratorio.",
+      "Uz Trampa é um laboratório intermediário voltado à observação de interações suspeitas em serviços isca, permitindo coletar comandos, origens e padrões de comportamento para posterior análise defensiva.",
     objective:
-      "Gerar sinais uteis para analise defensiva ao expor servicos e artefatos monitorados em um ambiente isolado.",
+      "Gerar sinais úteis de detecção a partir de um ambiente controlado, onde a atividade observada possa ser estudada sem comprometer a infraestrutura principal.",
     technologies: ["Linux", "Cowrie", "Python", "Syslog", "Docker"],
     architecture: [
-      "Servicos isca expostos em ambiente segregado.",
-      "Coleta de eventos em tempo real para posterior analise de padroes.",
-      "Camada de scripts para consolidar evidencias."
+      "Serviços isca expostos em ambiente segregado para receber conexões e tentativas de abuso.",
+      "Centralização dos eventos em logs próprios para análise de sessões, comandos e origens.",
+      "Scripts de apoio para resumir indicadores e tornar a triagem mais prática."
     ],
     implementation: [
-      "Configuracao de honeypots e rotas de log dedicadas.",
-      "Organizacao de indicadores relevantes para sessao, comando e origem.",
-      "Ajustes de ruido para manter o laboratorio legivel."
+      "Configuração de honeypots e rotas de log dedicadas para reduzir interferência no restante do laboratório.",
+      "Organização dos dados capturados por sessão, origem e tipo de interação.",
+      "Refino do ambiente para reduzir ruído e manter foco no valor analítico dos eventos coletados."
     ],
     results: [
-      "Base de eventos para praticar triagem e correlacao.",
-      "Visibilidade sobre tecnicas simples de reconhecimento e tentativa de acesso."
+      "Base de eventos reais ou semi-realistas para treino de triagem e correlação.",
+      "Visibilidade mais concreta sobre tentativas simples de reconhecimento, acesso e automação maliciosa."
     ],
     learnings: [
-      "Sinais de baixa complexidade ainda ajudam muito em deteccao inicial.",
-      "Honeypots exigem contexto para nao inflar metricas sem valor analitico."
+      "Nem todo evento capturado é útil; contexto e filtragem são essenciais para gerar valor.",
+      "Mesmo ataques simples podem revelar padrões importantes para detecção inicial."
     ],
-    links: [{ label: "Notas do projeto", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   },
   {
     slug: "hackermindset",
     title: "Hackermindset",
-    category: "Intermediario",
-    tagline: "Colecao de exercicios para pensar em superficie de ataque, abuso de confianca e deteccao.",
+    category: "Intermediário",
+    tagline: "Exercícios técnicos para transformar pensamento ofensivo em melhoria defensiva.",
     summary:
-      "Projeto de estudo estruturado para praticar raciocinio tecnico orientado a ataque e traducao desse raciocinio em controles defensivos.",
+      "Hackermindset é um projeto de estudo aplicado para observar como fraquezas de configuração podem ser exploradas e, principalmente, como esses comportamentos podem ser percebidos em logs, monitoramento e controles defensivos.",
     objective:
-      "Treinar observacao, hipotese e resposta defensiva a partir da perspectiva de como um invasor explora configuracoes fracas.",
+      "Treinar raciocínio técnico a partir da perspectiva de ataque para fortalecer priorização de controles, hipóteses de detecção e análise de evidências.",
     technologies: ["Linux", "Python", "Bash", "Networking", "Logs"],
     architecture: [
-      "Exercicios separados por etapa de reconhecimento, exploracao e deteccao.",
-      "Registro de hipoteses defensivas geradas a partir de cada experimento."
+      "Exercícios divididos por reconhecimento, exploração, observação e resposta.",
+      "Registro de hipóteses defensivas geradas a partir de cada prática realizada."
     ],
     implementation: [
-      "Montagem de cenarios controlados com configuracoes intencionalmente fracas.",
-      "Analise de como cada fragilidade pode ser percebida via logs e monitoramento."
+      "Montagem de cenários controlados com configurações frágeis para estudar abuso de confiança e exposição desnecessária.",
+      "Análise de como cada ação pode aparecer em logs, fluxo de rede e trilhas de auditoria.",
+      "Tradução do aprendizado ofensivo em backlog defensivo e ajustes de visibilidade."
     ],
     results: [
-      "Melhoria no raciocinio sobre cadeia de ataque e pontos de visibilidade.",
-      "Maior capacidade de transformar estudo ofensivo em backlog defensivo."
+      "Melhoria do raciocínio sobre cadeia de ataque e superfícies de detecção.",
+      "Capacidade maior de conectar estudo ofensivo com melhoria concreta de postura defensiva."
     ],
     learnings: [
-      "Pensar como atacante melhora priorizacao de controles.",
-      "A melhor pergunta depois de cada teste e como isso apareceria no ambiente real."
+      "Pensar como atacante ajuda a priorizar controles realmente úteis.",
+      "A melhor utilidade do estudo ofensivo é transformá-lo em prevenção, visibilidade e resposta."
     ],
-    links: [{ label: "Caderno tecnico", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   },
   {
     slug: "password-generator",
     title: "Password Generator",
     category: "Ferramenta",
-    tagline: "Ferramenta utilitaria para geracao de senhas fortes com configuracao simples.",
+    tagline: "Utilitário simples para geração de senhas fortes com foco em uso rápido e boas práticas.",
     summary:
-      "Aplicacao de apoio para criar senhas robustas com variacoes de comprimento, conjuntos de caracteres e politicas minimas.",
+      "Ferramenta criada para gerar senhas robustas de forma prática, permitindo controlar tamanho, caracteres e requisitos mínimos para evitar combinações fracas.",
     objective:
-      "Disponibilizar uma ferramenta pratica e direta para reforcar boas praticas de autenticacao no dia a dia.",
-    technologies: ["Python", "CLI", "Seguranca de Senhas"],
+      "Disponibilizar um utilitário leve para reforçar boas práticas de autenticação e demonstrar atenção a fundamentos importantes de segurança.",
+    technologies: ["Python", "CLI", "Segurança de Senhas"],
     architecture: [
-      "Entrada simples de parametros e geracao local da senha.",
-      "Regras para evitar combinacoes fracas e baixa entropia."
+      "Entrada simples de parâmetros e geração local da senha sem dependência externa.",
+      "Regras mínimas para elevar entropia e evitar combinações previsíveis."
     ],
     implementation: [
-      "Definicao de conjuntos de caracteres e validacoes minimas.",
-      "Saida orientada a uso rapido em ambiente CLI."
+      "Definição dos conjuntos de caracteres e critérios mínimos de geração.",
+      "Saída desenhada para uso rápido em terminal e fácil adaptação para outros scripts."
     ],
     results: [
-      "Ferramenta leve para demonstrar fundamentos de autenticacao segura.",
-      "Exemplo pratico de utilitario com foco em seguranca."
+      "Ferramenta pequena, direta e útil para o dia a dia.",
+      "Exemplo de como utilitários simples também comunicam preocupação com segurança prática."
     ],
     learnings: [
-      "Utilitarios pequenos tambem comunicam maturidade tecnica quando resolvem um problema real."
+      "Pequenas ferramentas podem ser extremamente valiosas quando resolvem um problema frequente com clareza."
     ],
-    links: [{ label: "Repositorio em preparacao", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   },
   {
     slug: "system-check-tool",
     title: "system-check-tool",
     category: "Ferramenta",
-    tagline: "Script de verificacao rapida para posture de seguranca e estado basico do host.",
+    tagline: "Script para revisão rápida de postura, serviços e estado básico de hosts Linux.",
     summary:
-      "Ferramenta de apoio para coletar informacoes de configuracao, servicos, versoes e sinais operacionais relevantes durante auditoria inicial.",
+      "Ferramenta criada para acelerar uma checagem técnica inicial, reunindo informações de serviços, portas, usuários, atualizações e outros indicadores úteis para auditoria básica e hardening.",
     objective:
-      "Agilizar uma checagem tecnica inicial de hosts Linux sem depender de analise manual repetitiva.",
-    technologies: ["Bash", "Linux", "Auditoria Basica"],
+      "Reduzir análise manual repetitiva durante revisões iniciais de host, criando um ponto de partida mais consistente para troubleshooting e avaliação defensiva.",
+    technologies: ["Bash", "Linux", "Auditoria Básica"],
     architecture: [
-      "Coleta modular de informacoes sobre servicos, portas, usuarios e atualizacoes.",
-      "Saida padronizada para uso em triagem e hardening."
+      "Coleta modular de informações sobre rede, serviços, usuários e estado geral do sistema.",
+      "Saída padronizada para facilitar leitura, comparação entre hosts e documentação técnica."
     ],
     implementation: [
-      "Organizacao do script por grupos de checagem.",
-      "Padronizacao da saida para leitura rapida e comparacao."
+      "Organização das checagens por blocos lógicos para facilitar manutenção e expansão do script.",
+      "Padronização da saída para apoiar triagem rápida e uso em laboratório."
     ],
     results: [
-      "Ganho de tempo em avaliacoes tecnicas iniciais.",
-      "Checklist automatizado para tarefas recorrentes de revisao."
+      "Economia de tempo em avaliações técnicas iniciais.",
+      "Checklist automatizado útil para revisão recorrente de sistemas Linux."
     ],
     learnings: [
-      "Padronizar observacoes reduz falhas humanas e facilita comunicacao tecnica."
+      "Padronizar observações facilita comunicação técnica e reduz falhas humanas durante análise inicial."
     ],
-    links: [{ label: "Repositorio em preparacao", href: "#" }]
+    links: [
+      { label: "GitHub", href: githubProfile },
+      { label: "Medium", href: mediumProfile }
+    ]
   }
 ];
 
 export const featuredProjects = projects.filter((project) => project.category === "Destaque");
-export const intermediateProjects = projects.filter((project) => project.category === "Intermediario");
+export const intermediateProjects = projects.filter((project) => project.category === "Intermediário");
 export const toolProjects = projects.filter((project) => project.category === "Ferramenta");
