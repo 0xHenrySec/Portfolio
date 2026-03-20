@@ -9,11 +9,12 @@ interface Props {
 
 const { title = siteMeta.title, description = siteMeta.description } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
+const rootPath = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
 const navLinks = [
-  { label: "Home", href: baseUrl },
-  { label: "Projetos", href: `${baseUrl}#projetos` },
-  { label: "Medium", href: `${baseUrl}#medium` },
-  { label: "Contato", href: `${baseUrl}#contato` }
+  { label: "Home", href: rootPath },
+  { label: "Projetos", href: `${rootPath}#projetos` },
+  { label: "Medium", href: `${rootPath}#medium` },
+  { label: "Contato", href: `${rootPath}#contato` }
 ];
 ---
 
@@ -33,7 +34,7 @@ const navLinks = [
     <header class="sticky top-0 z-40 border-b border-[color:var(--border)] bg-[rgba(3,8,11,0.78)] backdrop-blur-xl">
       <div class="container-shell flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
         <div class="flex items-center justify-between gap-4">
-          <a href={baseUrl} class="font-mono text-sm uppercase tracking-[0.28em] text-white">
+          <a href={rootPath} class="font-mono text-sm uppercase tracking-[0.28em] text-white">
             {profile.name}
           </a>
           <span class="terminal-chip hidden md:inline-flex">{profile.role}</span>
@@ -49,7 +50,7 @@ const navLinks = [
           </ul>
         </nav>
 
-        <a class="button-secondary text-sm" href={`${baseUrl}#projetos`}>Explorar projetos</a>
+        <a class="button-secondary text-sm" href={`${rootPath}#projetos`}>Explorar projetos</a>
       </div>
     </header>
 

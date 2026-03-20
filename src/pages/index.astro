@@ -54,20 +54,20 @@ import { profile } from "../data/site";
           </div>
           <div class="dashboard-panel">
             <p class="dashboard-label">Prática</p>
-            <p class="dashboard-value">Laboratórios Linux, análise de eventos, automação e tuning de observabilidade.</p>
+            <p class="dashboard-value">Laboratórios Linux, observabilidade, análise de logs e projetos aplicados à defesa.</p>
           </div>
           <div class="dashboard-panel">
             <p class="dashboard-label">Objetivo</p>
-            <p class="dashboard-value">Demonstrar projetos reais, aprendizado contínuo e capacidade hands-on.</p>
+            <p class="dashboard-value">Demonstrar capacidade técnica real com projetos, laboratórios e automações próprias.</p>
           </div>
         </div>
 
         <div class="card-panel p-5">
           <p class="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--accent)]">Pipeline operacional</p>
           <ul class="mt-4 grid gap-3 text-sm leading-6 text-[color:var(--text-soft)]">
-            <li>01. Coleta e normalização de logs</li>
-            <li>02. Correlação, triagem e investigação</li>
-            <li>03. Hardening, ajustes e melhoria contínua</li>
+            <li>01. Coleta e normalização de dados</li>
+            <li>02. Análise, correlação e triagem</li>
+            <li>03. Hardening, validação e melhoria contínua</li>
           </ul>
         </div>
       </div>
@@ -78,18 +78,18 @@ import { profile } from "../data/site";
     <div class="section-frame grid gap-8 p-8 md:grid-cols-[0.8fr_1.2fr] md:p-12">
       <SectionTitle
         eyebrow="Sobre"
-        title="Projetos construídos para estudar defesa, observabilidade e administração segura de ambientes Linux."
-        description="O objetivo deste portfólio é mostrar prática real, documentação direta e capacidade de transformar laboratório em aprendizado aplicável."
+        title="Profissional em início de carreira com foco em cibersegurança defensiva, observabilidade e ambientes Linux."
+        description="Este portfólio reúne projetos práticos e laboratoriais que demonstram aplicação real de conceitos de segurança."
       />
 
       <div class="grid gap-5 text-base leading-7 text-[color:var(--text-soft)]">
         <p>
-          Meu foco está em segurança defensiva, análise de eventos, monitoramento e hardening. Em vez de centralizar certificações, prefiro
-          demonstrar experiência por meio de laboratórios, ferramentas e projetos que revelam processo técnico, troubleshooting e resultados.
+          Sou um profissional em início de carreira com foco em cibersegurança defensiva, observabilidade, monitoramento,
+          análise de logs, hardening e administração segura de ambientes Linux.
         </p>
         <p>
-          Cada projeto abaixo busca responder uma necessidade prática: detectar melhor, endurecer sistemas, organizar ambientes Linux,
-          automatizar tarefas úteis e documentar aprendizados relevantes para contextos de Blue Team.
+          Os projetos abaixo foram organizados para mostrar consistência técnica, documentação objetiva e aplicação prática
+          de conceitos de segurança sem alterar a navegação e o layout base do portfólio.
         </p>
 
         <div class="grid gap-4 pt-2 sm:grid-cols-2">
@@ -108,15 +108,15 @@ import { profile } from "../data/site";
     <div class="space-y-10">
       <SectionTitle
         eyebrow="Projetos"
-        title="Projetos, laboratórios e utilitários para demonstrar maturidade técnica real."
-        description="Os destaques abaixo cobrem detecção, hardening, infraestrutura Linux, honeypots, raciocínio ofensivo aplicado à defesa e automações do dia a dia."
+        title="Projetos padronizados para demonstrar consistência técnica, contexto e resultado."
+        description="Todos os cards e páginas seguem a mesma estrutura de resumo, descrição, tecnologias, destaques, resultado e links disponíveis."
       />
 
       <div class="space-y-12">
         <div class="space-y-5">
           <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Projetos principais</h3>
-            <span class="text-sm text-[color:var(--text-soft)]">Laboratórios com maior profundidade técnica e contexto operacional</span>
+            <span class="text-sm text-[color:var(--text-soft)]">Maior profundidade técnica e impacto demonstrável</span>
           </div>
           <div class="grid gap-6 lg:grid-cols-3">
             {featuredProjects.map((project) => <ProjectCard project={project} />)}
@@ -126,7 +126,7 @@ import { profile } from "../data/site";
         <div class="space-y-5">
           <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Projetos intermediários</h3>
-            <span class="text-sm text-[color:var(--text-soft)]">Observação de comportamento, iscas e raciocínio aplicado à detecção</span>
+            <span class="text-sm text-[color:var(--text-soft)]">Estudos aplicados com foco em resiliência e mentalidade ofensiva aplicada à defesa</span>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             {intermediateProjects.map((project) => <ProjectCard project={project} />)}
@@ -136,7 +136,7 @@ import { profile } from "../data/site";
         <div class="space-y-5">
           <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Ferramentas</h3>
-            <span class="text-sm text-[color:var(--text-soft)]">Scripts e utilitários criados para tarefas práticas e recorrentes</span>
+            <span class="text-sm text-[color:var(--text-soft)]">Utilitários práticos desenvolvidos para uso recorrente</span>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             {toolProjects.map((project) => <ProjectCard project={project} />)}
@@ -150,19 +150,19 @@ import { profile } from "../data/site";
     <div class="section-frame grid gap-8 p-8 md:grid-cols-[1fr_0.75fr] md:p-12">
       <SectionTitle
         eyebrow="Medium"
-        title="Artigos técnicos para aprofundar metodologia, troubleshooting e aprendizados."
-        description="O Medium funciona como extensão do portfólio para publicar write-ups, notas de laboratório e documentação técnica em português."
+        title="Artigos técnicos, write-ups e documentação complementar dos projetos."
+        description="O Medium funciona como extensão do portfólio para aprofundar metodologia, decisões técnicas e aprendizados."
       />
 
       <div class="card-panel flex flex-col justify-between gap-6 p-6">
         <div class="space-y-4">
           <p class="text-base leading-7 text-[color:var(--text-soft)]">
-            Publicações voltadas para hardening, tuning de observabilidade, estudos de Blue Team e aprendizados gerados a partir dos laboratórios.
+            Espaço destinado a documentações, análises e aprendizados técnicos vinculados aos laboratórios e ferramentas apresentados aqui.
           </p>
           <div class="grid gap-3 text-sm text-[color:var(--text-muted)]">
             <span>• Write-ups e documentação prática</span>
-            <span>• Evidências, metodologia e contexto técnico</span>
-            <span>• Conteúdo técnico direto em português</span>
+            <span>• Metodologia, contexto e evidências</span>
+            <span>• Conteúdo técnico em português</span>
           </div>
         </div>
 
@@ -176,17 +176,17 @@ import { profile } from "../data/site";
       <SectionTitle
         eyebrow="Contato"
         title="Acompanhe meus projetos e publicações pelos canais principais."
-        description="Removi e-mail e LinkedIn desta versão do portfólio para manter o foco em GitHub, Medium e conteúdo técnico publicado."
+        description="Os links abaixo foram mantidos enxutos para priorizar navegação sem ruído e evitar links quebrados."
       />
 
       <div class="grid gap-4">
         <a class="button-secondary justify-between" href={profile.githubUrl} target="_blank" rel="noreferrer">
           <span>GitHub</span>
-          <span class="font-mono text-xs uppercase tracking-[0.24em]">Projetos, código e histórico</span>
+          <span class="font-mono text-xs uppercase tracking-[0.24em]">Projetos e repositórios</span>
         </a>
         <a class="button-secondary justify-between" href={profile.mediumUrl} target="_blank" rel="noreferrer">
           <span>Medium</span>
-          <span class="font-mono text-xs uppercase tracking-[0.24em]">Artigos e write-ups técnicos</span>
+          <span class="font-mono text-xs uppercase tracking-[0.24em]">Artigos e write-ups</span>
         </a>
       </div>
     </div>
