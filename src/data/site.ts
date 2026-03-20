@@ -11,7 +11,7 @@ export const profile = {
   focus: "Blue Team, monitoramento, análise de logs e hardening",
   headline: "Projetos, laboratórios e automações voltados para defesa prática, visibilidade e resposta baseada em evidências.",
   about:
-    "Construo laboratórios e projetos para estudar detecção, hardening, monitoramento e administração segura de ambientes Linux. Este portfólio reúne experiências práticas voltadas para observabilidade, correlação de eventos e melhoria contínua da postura defensiva.",
+    "Construo laboratórios e projetos para estudar detecção, hardening, monitoramento e administração segura de ambientes Linux e Windows. Este portfólio reúne experiências práticas voltadas para observabilidade, correlação de eventos e melhoria contínua da postura defensiva.",
   highlights: [
     "Detecção e monitoramento com foco em Blue Team",
     "Análise de eventos, logs e trilhas de auditoria",
