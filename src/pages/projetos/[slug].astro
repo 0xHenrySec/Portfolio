@@ -11,12 +11,21 @@ export function getStaticPaths() {
 
 const { project } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
+const rootPath = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const demoLabel = ["hardening-linux", "infraestrutura-linux-corporativa"].includes(project.slug)
+  ? "Acessar Documento em PDF"
+  : "Acessar Site";
+const projectLinks = [
+  project.links.demo ? { label: demoLabel, href: project.links.demo } : null,
+  project.links.repo ? { label: "Repositório", href: project.links.repo } : null,
+  project.links.writeup ? { label: "Write-up", href: project.links.writeup } : null
+].filter(Boolean);
 ---
 
 <Layout title={`${project.title} | Henrique`} description={project.summary}>
   <section class="container-shell py-14 md:py-20">
     <div class="mb-8 flex flex-wrap items-center gap-4">
-      <a class="button-secondary px-4 py-2 text-sm" href={`${baseUrl}#projetos`}>Voltar aos projetos</a>
+      <a class="button-secondary px-4 py-2 text-sm" href={`${rootPath}#projetos`}>← Voltar aos projetos</a>
       <span class="terminal-chip">{project.category}</span>
     </div>
 
@@ -24,71 +33,55 @@ const baseUrl = import.meta.env.BASE_URL;
       <div class="border-b border-[color:var(--border)] px-8 py-10 md:px-12 md:py-14">
         <p class="eyebrow">Projeto</p>
         <h1 class="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">{project.title}</h1>
-        <p class="mt-5 max-w-3xl text-lg leading-8 text-[color:var(--text-soft)]">{project.tagline}</p>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-[color:var(--text-soft)]">{project.summary}</p>
       </div>
 
-      <div class="grid gap-6 px-8 py-8 md:grid-cols-[0.8fr_1.2fr] md:px-12 md:py-12">
+      <div class="grid gap-6 px-8 py-8 md:grid-cols-[0.78fr_1.22fr] md:px-12 md:py-12">
         <aside class="space-y-4">
-          <div class="border border-[color:var(--border)] bg-[color:var(--surface)] p-5">
+          <div class="card-panel p-5">
             <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Tecnologias</p>
             <ul class="mt-4 flex flex-wrap gap-2">
               {project.technologies.map((item) => (
-                <li class="border border-[color:var(--border)] px-2.5 py-1 text-xs text-[color:var(--text-soft)]">
-                  {item}
-                </li>
+                <li class="tag-chip">{item}</li>
               ))}
             </ul>
           </div>
 
-          <div class="border border-[color:var(--border)] bg-[color:var(--surface)] p-5">
-            <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Links</p>
-            <div class="mt-4 grid gap-3">
-              {project.links.map((link) => (
-                <a class="button-secondary justify-between text-sm" href={link.href}>
-                  <span>{link.label}</span>
-                  <span class="font-mono text-xs uppercase tracking-[0.2em]">Abrir</span>
-                </a>
-              ))}
+          {projectLinks.length > 0 && (
+            <div class="card-panel p-5">
+              <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Links</p>
+              <div class="mt-4 grid gap-3">
+                {projectLinks.map((link) => (
+                  <a class="button-secondary justify-between text-sm" href={link.href} target="_blank" rel="noreferrer">
+                    <span>{link.label}</span>
+                    <span class="font-mono text-xs uppercase tracking-[0.2em]">Abrir</span>
+                  </a>
+                ))}
+              </div>
             </div>
+          )}
+
+          <div class="card-panel p-5">
+            <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Resultado</p>
+            <p class="mt-4 text-sm leading-6 text-[color:var(--text-soft)]">{project.result}</p>
           </div>
         </aside>
 
         <div class="grid gap-6">
-          <article class="border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Visao geral</h2>
+          <article class="card-panel p-6">
+            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Resumo</h2>
             <p class="mt-4 text-base leading-7 text-[color:var(--text-soft)]">{project.summary}</p>
           </article>
 
-          <article class="border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Objetivo</h2>
-            <p class="mt-4 text-base leading-7 text-[color:var(--text-soft)]">{project.objective}</p>
+          <article class="card-panel p-6">
+            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Descrição</h2>
+            <p class="mt-4 text-base leading-7 text-[color:var(--text-soft)]">{project.description}</p>
           </article>
 
-          <article class="border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Arquitetura ou funcionamento</h2>
+          <article class="card-panel p-6">
+            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Destaques</h2>
             <ul class="mt-4 grid gap-3 text-base leading-7 text-[color:var(--text-soft)]">
-              {project.architecture.map((item) => <li>{item}</li>)}
-            </ul>
-          </article>
-
-          <article class="border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Implementacao</h2>
-            <ul class="mt-4 grid gap-3 text-base leading-7 text-[color:var(--text-soft)]">
-              {project.implementation.map((item) => <li>{item}</li>)}
-            </ul>
-          </article>
-
-          <article class="border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Resultados / evidencias</h2>
-            <ul class="mt-4 grid gap-3 text-base leading-7 text-[color:var(--text-soft)]">
-              {project.results.map((item) => <li>{item}</li>)}
-            </ul>
-          </article>
-
-          <article class="border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-            <h2 class="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">Aprendizados</h2>
-            <ul class="mt-4 grid gap-3 text-base leading-7 text-[color:var(--text-soft)]">
-              {project.learnings.map((item) => <li>{item}</li>)}
+              {project.highlights.map((item) => <li>• {item}</li>)}
             </ul>
           </article>
         </div>
