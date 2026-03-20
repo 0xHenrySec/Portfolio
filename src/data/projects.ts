@@ -18,6 +18,9 @@ export type Project = {
   links: ProjectLinks;
 };
 
+const githubProfile = "https://github.com/0xHenrySec";
+const mediumProfile = "https://medium.com/@0xHenry";
+
 export const projects: Project[] = [
   {
     slug: "cryptoshield",
