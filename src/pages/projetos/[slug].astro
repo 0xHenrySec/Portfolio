@@ -12,8 +12,11 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 const rootPath = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const demoLabel = ["hardening-linux", "infraestrutura-linux-corporativa"].includes(project.slug)
+  ? "Acessar Documento em PDF"
+  : "Acessar Site";
 const projectLinks = [
-  project.links.demo ? { label: "Demo", href: project.links.demo } : null,
+  project.links.demo ? { label: demoLabel, href: project.links.demo } : null,
   project.links.repo ? { label: "Repositório", href: project.links.repo } : null,
   project.links.writeup ? { label: "Write-up", href: project.links.writeup } : null
 ].filter(Boolean);
@@ -61,15 +64,6 @@ const projectLinks = [
           <div class="card-panel p-5">
             <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Resultado</p>
             <p class="mt-4 text-sm leading-6 text-[color:var(--text-soft)]">{project.result}</p>
-          </div>
-
-          <div class="card-panel p-5">
-            <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Resumo rápido</p>
-            <ul class="mt-4 grid gap-3 text-sm leading-6 text-[color:var(--text-soft)]">
-              <li>• Projeto documentado em português</li>
-              <li>• Estrutura focada em evidências e implementação</li>
-              <li>• Contexto orientado a prática hands-on</li>
-            </ul>
           </div>
         </aside>
 

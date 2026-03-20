@@ -1,5 +1,5 @@
 export const siteMeta = {
-  title: "Henrique | Analista de Cibersegurança",
+  title: "Henrique | Analista de Cibersegurança Jr",
   description:
     "Portfólio profissional de cibersegurança com foco em Blue Team, monitoramento, análise de logs, hardening e laboratórios Linux.",
   siteUrl: "https://0xhenrysec.github.io/Portfolio"
@@ -7,7 +7,7 @@ export const siteMeta = {
 
 export const profile = {
   name: "Henrique",
-  role: "Analista de Cibersegurança",
+  role: "Analista de Cibersegurança Jr",
   focus: "Blue Team, monitoramento, análise de logs e hardening",
   headline: "Projetos, laboratórios e automações voltados para defesa prática, visibilidade e resposta baseada em evidências.",
   about:

@@ -94,7 +94,7 @@ export const projects: Project[] = [
       "Testes controlados",
       "Avaliação de disponibilidade"
     ],
-    result: "Top 10 entre 68 equipes.",
+    result: "Top 10 entre 68 equipes no Challenge FIAP x PRIDE Security 2024",
     links: {}
   },
   {
@@ -133,6 +133,7 @@ export const projects: Project[] = [
     ],
     result: "Ferramenta funcional para geração de senhas seguras com foco em flexibilidade e usabilidade.",
     links: {
+      demo: "https://0xhenrysec.github.io/Password-Gen/",
       repo: "https://github.com/0xHenrySec/Password-Gen"
     }
   },
