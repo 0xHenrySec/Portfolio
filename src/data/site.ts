@@ -2,29 +2,27 @@ export const siteMeta = {
   title: "Henrique | Analista de Cibersegurança",
   description:
     "Portfólio profissional de cibersegurança com foco em Blue Team, monitoramento, análise de logs, hardening e laboratórios Linux.",
-  siteUrl: "https://example.com"
+  siteUrl: "https://0xhenrysec.github.io/Portfolio"
 };
 
 export const profile = {
   name: "Henrique",
   role: "Analista de Cibersegurança",
   focus: "Blue Team, monitoramento, análise de logs e hardening",
-  headline: "Operação defensiva guiada por visibilidade, evidências e prática hands-on.",
+  headline: "Projetos, laboratórios e automações voltados para defesa prática, visibilidade e resposta baseada em evidências.",
   about:
-    "Atuo na construção de laboratórios defensivos, análise de eventos, monitoramento e fortalecimento de ambientes Linux. Meu foco é transformar sinais técnicos em contexto operacional útil para detecção, hardening e resposta.",
+    "Construo laboratórios e projetos para estudar detecção, hardening, monitoramento e administração segura de ambientes Linux. Este portfólio reúne experiências práticas voltadas para observabilidade, correlação de eventos e melhoria contínua da postura defensiva.",
   highlights: [
-    "Segurança defensiva e visibilidade de ambiente",
+    "Detecção e monitoramento com foco em Blue Team",
     "Análise de eventos, logs e trilhas de auditoria",
-    "Laboratórios Linux com foco em troubleshooting e hardening",
-    "Automação técnica com Python, Bash e integrações com SIEM"
+    "Laboratórios Linux para hardening, troubleshooting e administração segura",
+    "Automação com Python, Bash e ferramentas de observabilidade"
   ],
   stats: [
     { label: "Projetos em destaque", value: "3" },
     { label: "Projetos intermediários", value: "2" },
     { label: "Ferramentas práticas", value: "2" }
   ],
-  mediumUrl: "https://medium.com/@henrique",
-  githubUrl: "https://github.com/henrique",
-  linkedinUrl: "https://www.linkedin.com/in/henrique",
-  email: "henrique@securitylab.dev"
+  mediumUrl: "https://medium.com/@0xHenry",
+  githubUrl: "https://github.com/0xHenrySec"
 };
