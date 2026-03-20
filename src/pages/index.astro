@@ -2,124 +2,112 @@
 import Layout from "../components/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SectionTitle from "../components/SectionTitle.astro";
-import {
-  featuredProjects,
-  intermediateProjects,
-  toolProjects
-} from "../data/projects";
+import { featuredProjects, intermediateProjects, toolProjects } from "../data/projects";
 import { profile } from "../data/site";
 ---
 
 <Layout>
-  <section class="container-shell anchor-offset grid min-h-[calc(100vh-5rem)] items-center gap-10 py-16 md:grid-cols-[1.2fr_0.8fr] md:py-24">
+  <section class="container-shell anchor-offset grid min-h-[calc(100vh-5rem)] items-center gap-10 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-24">
     <div class="space-y-8">
-      <span class="eyebrow">Defesa | Monitoramento | Hardening</span>
+      <span class="eyebrow">Blue Team • Logs • Hardening</span>
 
       <div class="space-y-6">
         <h1 class="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-          Portfolio orientado a <span class="signal-line text-[color:var(--accent)]">Blue Team</span> com foco em
-          laboratorio, visibilidade e operacao defensiva.
+          Henrique, <span class="signal-line text-[color:var(--accent)]">Analista de Cibersegurança Jr</span>
+          com foco em defesa prática e visibilidade operacional.
         </h1>
-        <p class="max-w-2xl text-lg leading-8 text-[color:var(--text-soft)] md:text-xl">
-          {profile.name}, {profile.role}. Atuo com monitoramento, analise de logs, hardening e construcao de ambientes
-          tecnicos para praticar deteccao, auditoria e resposta.
-        </p>
+        <p class="max-w-2xl text-lg leading-8 text-[color:var(--text-soft)] md:text-xl">{profile.headline}</p>
+        <p class="max-w-2xl text-base leading-7 text-[color:var(--text-muted)]">{profile.about}</p>
       </div>
 
       <div class="flex flex-col gap-4 sm:flex-row">
-        <a class="button-primary" href="#projetos">Ver projetos</a>
-        <a class="button-secondary" href="#contato">Falar comigo</a>
+        <a class="button-primary" href="#projetos">Explorar projetos</a>
+        <a class="button-secondary" href="#contato">Ver canais</a>
       </div>
 
       <div class="grid gap-3 sm:grid-cols-3">
-        <div class="terminal-chip">Blue Team</div>
-        <div class="terminal-chip">Linux + SIEM</div>
-        <div class="terminal-chip">Analise de eventos</div>
+        {profile.stats.map((stat) => (
+          <div class="metric-card">
+            <span>{stat.label}</span>
+            <strong>{stat.value}</strong>
+          </div>
+        ))}
       </div>
     </div>
 
     <aside class="section-frame relative overflow-hidden p-8">
       <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--accent)] to-transparent"></div>
       <div class="space-y-8">
-        <div class="flex items-center justify-between font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--text-soft)]">
+        <div class="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--text-soft)]">
           <span>Threat Visibility</span>
-          <span>Online</span>
         </div>
 
-        <div class="space-y-4">
-          <p class="font-mono text-xs uppercase tracking-[0.26em] text-[color:var(--accent-warm)]">Resumo Operacional</p>
-          <div class="space-y-4">
-            <div class="border border-[color:var(--border)] bg-[rgba(2,12,18,0.72)] p-4">
-              <p class="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--text-soft)]">Foco</p>
-              <p class="mt-2 text-sm leading-6 text-white">{profile.focus}</p>
-            </div>
-            <div class="border border-[color:var(--border)] bg-[rgba(2,12,18,0.72)] p-4">
-              <p class="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--text-soft)]">Praticas</p>
-              <p class="mt-2 text-sm leading-6 text-white">
-                Deteccao em laboratorio, validacao de configuracoes, observabilidade e fortalecimento de ambientes Linux.
-              </p>
-            </div>
+        <div class="dashboard-grid">
+          <div class="dashboard-panel">
+            <p class="dashboard-label">Foco atual</p>
+            <p class="dashboard-value">{profile.focus}</p>
+          </div>
+          <div class="dashboard-panel">
+            <p class="dashboard-label">Stack Técnica</p>
+            <p class="dashboard-value">Linux, Python, Segurança de Redes, Monitoramento e Logs, Hardening, SIEM (Splunk)</p>
+          </div>
+          <div class="dashboard-panel">
+            <p class="dashboard-label">Prática</p>
+            <p class="dashboard-value">Laboratórios Linux, observabilidade, análise de logs e projetos aplicados à defesa.</p>
+          </div>
+          <div class="dashboard-panel">
+            <p class="dashboard-label">Objetivo</p>
+            <p class="dashboard-value">Demonstrar capacidade técnica real com projetos, laboratórios e automações próprias.</p>
           </div>
         </div>
 
-        <div class="grid gap-3 sm:grid-cols-2">
-          <div class="border border-[color:var(--border)] p-4">
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-[color:var(--text-soft)]">Stack</p>
-            <p class="mt-2 text-sm text-white">Astro, TailwindCSS, GitHub Pages</p>
-          </div>
-          <div class="border border-[color:var(--border)] p-4">
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-[color:var(--text-soft)]">Objetivo</p>
-            <p class="mt-2 text-sm text-white">Demonstrar experiencia tecnica real e projetos hands-on.</p>
-          </div>
-        </div>
       </div>
     </aside>
   </section>
 
   <section id="sobre" class="container-shell anchor-offset py-10 md:py-16">
-    <div class="section-frame grid gap-8 p-8 md:grid-cols-[0.7fr_1.3fr] md:p-12">
+    <div class="section-frame grid gap-8 p-8 md:grid-cols-[0.8fr_1.2fr] md:p-12">
       <SectionTitle
         eyebrow="Sobre"
-        title="Experiencia pratica em seguranca defensiva e operacao Linux."
-        description="O portfolio prioriza clareza tecnica, contexto operacional e evidencia de laboratorio."
+        title="Profissional em início de carreira com foco em cibersegurança defensiva, observabilidade e ambientes Linux."
+        description="Este portfólio reúne projetos práticos e laboratoriais que demonstram aplicação real de conceitos de segurança."
       />
 
       <div class="grid gap-5 text-base leading-7 text-[color:var(--text-soft)]">
         <p>
-          Minha atuacao e focada em seguranca defensiva, analise de eventos e construcao de laboratorios que simulam
-          cenarios reais. O objetivo e transformar pratica tecnica em observabilidade, deteccao e melhoria de postura.
+          Sou um profissional em início de carreira com foco em cibersegurança defensiva, observabilidade, monitoramento,
+          análise de logs, hardening e administração segura de ambientes Linux.
         </p>
         <p>
-          Trabalho com Linux, SIEM, automacao em Python e tuning de telemetria para construir ambientes mais visiveis,
-          auditaveis e resistentes. O foco aqui nao e certificacao; e execucao, troubleshooting e capacidade hands-on.
+          Os projetos abaixo foram organizados para mostrar consistência técnica, documentação objetiva e aplicação prática
+          de conceitos de segurança sem alterar a navegação e o layout base do portfólio.
         </p>
-        <div class="grid gap-3 pt-2 sm:grid-cols-2">
-          <div class="border border-[color:var(--border)] bg-[color:var(--surface)] p-4">
-            <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Especialidades</p>
-            <p class="mt-2 text-sm text-white">Blue Team, log analysis, baseline de seguranca e laboratorios Linux.</p>
-          </div>
-          <div class="border border-[color:var(--border)] bg-[color:var(--surface)] p-4">
-            <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Abordagem</p>
-            <p class="mt-2 text-sm text-white">Projetos objetivos, foco em evidencia e documentacao tecnica direta.</p>
-          </div>
+
+        <div class="card-panel p-5">
+          <p class="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Competências</p>
+          <ul class="mt-3 grid gap-3 text-sm leading-6 text-white">
+            {profile.highlights.map((item) => (
+              <li>• {item}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
   <section id="projetos" class="container-shell anchor-offset py-10 md:py-16">
-    <div class="space-y-8">
+    <div class="space-y-10">
       <SectionTitle
         eyebrow="Projetos"
-        title="Cases e ferramentas construidos para demonstrar maturidade tecnica."
-        description="A selecao abaixo combina laboratorios principais, projetos intermediarios e utilitarios de apoio."
+        title="Projetos padronizados para demonstrar consistência técnica, contexto e resultado."
+        description="Todos os cards e páginas seguem a mesma estrutura de resumo, descrição, tecnologias, destaques, resultado e links disponíveis."
       />
 
       <div class="space-y-12">
         <div class="space-y-5">
-          <div class="flex items-center justify-between gap-4">
-            <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Projetos Principais</h3>
-            <span class="text-sm text-[color:var(--text-soft)]">Maior profundidade operacional</span>
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Projetos principais</h3>
+            <span class="text-sm text-[color:var(--text-soft)]">Maior profundidade técnica e impacto demonstrável</span>
           </div>
           <div class="grid gap-6 lg:grid-cols-3">
             {featuredProjects.map((project) => <ProjectCard project={project} />)}
@@ -127,9 +115,9 @@ import { profile } from "../data/site";
         </div>
 
         <div class="space-y-5">
-          <div class="flex items-center justify-between gap-4">
-            <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Projetos Intermediarios</h3>
-            <span class="text-sm text-[color:var(--text-soft)]">Estudo aplicado e correlacao defensiva</span>
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Projetos intermediários</h3>
+            <span class="text-sm text-[color:var(--text-soft)]">Estudos aplicados com foco em resiliência e mentalidade ofensiva aplicada à defesa</span>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             {intermediateProjects.map((project) => <ProjectCard project={project} />)}
@@ -137,9 +125,9 @@ import { profile } from "../data/site";
         </div>
 
         <div class="space-y-5">
-          <div class="flex items-center justify-between gap-4">
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <h3 class="font-mono text-sm uppercase tracking-[0.26em] text-[color:var(--accent)]">Ferramentas</h3>
-            <span class="text-sm text-[color:var(--text-soft)]">Utilitarios voltados a pratica cotidiana</span>
+            <span class="text-sm text-[color:var(--text-soft)]">Utilitários práticos desenvolvidos para uso recorrente</span>
           </div>
           <div class="grid gap-6 md:grid-cols-2">
             {toolProjects.map((project) => <ProjectCard project={project} />)}
@@ -150,44 +138,46 @@ import { profile } from "../data/site";
   </section>
 
   <section id="medium" class="container-shell anchor-offset py-10 md:py-16">
-    <div class="section-frame grid gap-8 p-8 md:grid-cols-[1fr_0.7fr] md:p-12">
+    <div class="section-frame grid gap-8 p-8 md:grid-cols-[1fr_0.75fr] md:p-12">
       <SectionTitle
         eyebrow="Medium"
-        title="Artigos tecnicos para aprofundar contexto, metodologia e aprendizados."
-        description="A secao foi preparada para direcionar o visitante para publicacoes no Medium sem depender de integracao via API."
+        title="Artigos técnicos, write-ups e documentação complementar dos projetos."
+        description="O Medium funciona como extensão do portfólio para aprofundar metodologia, decisões técnicas e aprendizados."
       />
 
-      <div class="flex flex-col justify-between gap-6 border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-        <p class="text-base leading-7 text-[color:var(--text-soft)]">
-          Use esta area para publicar write-ups, estudos de hardening, tuning de SIEM e notas de laboratorio.
-        </p>
-        <a class="button-primary w-fit" href={profile.mediumUrl} target="_blank" rel="noreferrer">
-          Abrir Medium
-        </a>
+      <div class="card-panel flex flex-col justify-between gap-6 p-6">
+        <div class="space-y-4">
+          <p class="text-base leading-7 text-[color:var(--text-soft)]">
+            Espaço destinado a documentações, análises e aprendizados técnicos vinculados aos laboratórios e ferramentas apresentados aqui.
+          </p>
+          <div class="grid gap-3 text-sm text-[color:var(--text-muted)]">
+            <span>• Write-ups e documentação prática</span>
+            <span>• Metodologia, contexto e evidências</span>
+            <span>• Conteúdo técnico em português</span>
+          </div>
+        </div>
+
+        <a class="button-primary w-fit" href={profile.mediumUrl} target="_blank" rel="noreferrer">Abrir Medium</a>
       </div>
     </div>
   </section>
 
   <section id="contato" class="container-shell anchor-offset py-10 pb-20 md:py-16 md:pb-24">
-    <div class="section-frame grid gap-8 p-8 md:grid-cols-[1fr_0.9fr] md:p-12">
+    <div class="section-frame grid gap-8 p-8 md:grid-cols-[1fr_0.95fr] md:p-12">
       <SectionTitle
         eyebrow="Contato"
-        title="Disponivel para conversar sobre seguranca defensiva, laboratorios e projetos."
-        description="A area de contato reforca o posicionamento profissional do portfolio sem distrair do conteudo tecnico."
+        title="Acompanhe meus projetos e publicações pelos canais principais."
+        description="Os links abaixo foram mantidos enxutos para priorizar navegação sem ruído e evitar links quebrados."
       />
 
       <div class="grid gap-4">
-        <a class="button-secondary justify-between" href={`mailto:${profile.email}`}>
-          <span>Email</span>
-          <span class="font-mono text-xs uppercase tracking-[0.24em]">{profile.email}</span>
-        </a>
-        <a class="button-secondary justify-between" href={profile.githubUrl}>
+        <a class="button-secondary justify-between" href={profile.githubUrl} target="_blank" rel="noreferrer">
           <span>GitHub</span>
-          <span class="font-mono text-xs uppercase tracking-[0.24em]">Atualizar URL</span>
+          <span class="font-mono text-xs uppercase tracking-[0.24em]">Projetos e repositórios</span>
         </a>
-        <a class="button-secondary justify-between" href={profile.linkedinUrl}>
-          <span>LinkedIn</span>
-          <span class="font-mono text-xs uppercase tracking-[0.24em]">Atualizar URL</span>
+        <a class="button-secondary justify-between" href={profile.mediumUrl} target="_blank" rel="noreferrer">
+          <span>Medium</span>
+          <span class="font-mono text-xs uppercase tracking-[0.24em]">Artigos e write-ups</span>
         </a>
       </div>
     </div>
