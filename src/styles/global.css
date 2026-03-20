@@ -21,12 +21,12 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #2f6664 #0b1114;
+  scrollbar-color: #1f4f4d #0b1114;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -34,13 +34,14 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2f6664;
+  background: #1f4f4d;
   border-radius: 999px;
   border: 2px solid #0b1114;
+  min-height: 40px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a7d7a;
+  background: #2f6664;
 }
 
 ::-webkit-scrollbar-thumb:active {
